@@ -1,0 +1,118 @@
+h2 {
+  color: rgb(255, 217, 0);
+}
+.pokemons-container {
+  width: 90%;
+  text-align: center;
+  margin-top: 60px;
+}
+.pokemons-sub-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-number {
+  color: white;
+}
+.nav-buttons {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+.grid {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  border: solid 1px white;
+  border-radius: 5px;
+  padding: 10px;
+}
+.pokemon-container2 {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.image-container2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image2 {
+  width: 200px;
+  height: 200px;
+}
+.info-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+.link2 {
+  color: rgb(255, 217, 0);
+}
+.link2:hover {
+  color: white;
+  text-shadow: 1px 0px 10px rgb(255, 217, 0);
+  transition: 0.3s;
+}
+.back-button {
+  margin-top: 30px;
+}
+.preloader {
+  width: 70px;
+  height: 70px;
+  border: 5px solid rgb(255, 217, 0);
+  border-top: 5px solid red;
+  border-radius: 50%;
+  animation-name: girar;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ///////////////RESPONSIVE/////////////// */
+
+@media screen and (max-width: 992px) {
+  .pokemons-container {
+    margin-top: 100px;
+    margin-bottom: 30px;
+  }
+  .grid {
+    flex-wrap: wrap;
+    padding-top: 30px;
+  }
+  .pokemon-container2 {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .pokemons-container {
+    width: 100%;
+  }
+  .pokemons-sub-container {
+    width: 90%;
+    margin: auto;
+  }
+  .pokemon-container2 {
+    width: 100%;
+  }
+  .info-container {
+    width: 50%;
+    margin: auto;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
