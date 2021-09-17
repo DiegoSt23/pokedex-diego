@@ -23,12 +23,10 @@ const PokemonsGrid = () => {
     const func = async () => {
       if (type === "all") {
         const res = await searchAllPokemons(offset)
-        console.log(res)
         setTypeStatus(true)
         setResults(res.data.results)
       } else {
         const res = await searchType(type) 
-        console.log(res)
         setTypeStatus(false)
         setPokemonType(res.data.pokemon)
       }                 

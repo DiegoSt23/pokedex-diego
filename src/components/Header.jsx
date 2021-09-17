@@ -12,7 +12,7 @@ const Header = () => {
 
   const handleSetPokemon = () => {
     if (value1) {
-      history.push(`/pokemon/${value1}`)
+      history.push(`/pokemon/${value1.toLowerCase()}`)
       setMenuStatus(false)
     }
   };
@@ -43,7 +43,7 @@ const Header = () => {
       </div>           
       <div className="search-container1">
         <div>
-          <input value={value1} onChange={e => {setValue1(e.target.value)}} placeholder="Name/ID(less than 898)"/>
+          <input value={value1} onChange={e => {setValue1(e.target.value)}} placeholder="Name/ID"/>
             <button onClick={handleSetPokemon}>GO!</button>
         </div>        
         <div>
@@ -74,7 +74,7 @@ const Header = () => {
       </div>
       <div className="search-container2" style={{display: menuStatus ? "block" : "none" }}>
         <div>
-          <input value={value1} onChange={e => {setValue1(e.target.value)}} placeholder="Name/ID(less than 898)"/>
+          <input value={value1} onChange={e => {setValue1(e.target.value)}} placeholder="Name/ID"/>
           <button onClick={handleSetPokemon}>GO!</button>
         </div>        
         <div>

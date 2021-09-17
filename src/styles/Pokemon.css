@@ -1,3 +1,11 @@
+.pokemon-main-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+}
 .pokemon-container {
   width: 90%;
   display: flex;
@@ -34,6 +42,12 @@
   flex-direction: column;
   align-items: center;
 }
+.error-message-container {
+  width: 40%;
+  margin: auto;
+  text-align: center;
+  color: white;
+}
 .link {
   text-decoration: none;
 }
@@ -50,6 +64,26 @@
   transform: scale(1.1);
  cursor: pointer;
   transition: 0.3s;
+}
+
+.preloader {
+  width: 70px;
+  height: 70px;
+  border: 5px solid rgb(255, 217, 0);
+  border-top: 5px solid red;
+  border-radius: 50%;
+  animation-name: girar;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ///////////////RESPONSIVE/////////////// */
@@ -77,6 +111,8 @@
     border: solid 1px white;
     border-radius: 5px;
     padding: 5px;
-
+  }
+  .error-message-container {
+    width: 80%;
   }
 }
