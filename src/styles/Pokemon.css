@@ -65,6 +65,12 @@
  cursor: pointer;
   transition: 0.3s;
 }
+.options-container {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .preloader {
   width: 70px;
@@ -101,8 +107,15 @@
     flex-direction: row;
     justify-content: space-between;
   }
+  .options-container {
+    width: 60%;
+  }
 }
 @media screen and (max-width: 576px) {
+  .pokemon-container {
+    margin-top: 40px;
+    width: 95%;
+  }
   .image {
     width: 300px;
     height: 300px;
@@ -114,5 +127,8 @@
   }
   .error-message-container {
     width: 80%;
+  }
+  .options-container {
+    width: 100%;
   }
 }

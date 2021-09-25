@@ -1,10 +1,13 @@
 import "./styles/Global.css";
 import Pokedex from "./components/Pokedex";
+import FavoritesProvider from "./context/favorites/FavoritesProvider";
 
 function App() {
   return (
     <>
-      <Pokedex/>
+      <FavoritesProvider>
+        <Pokedex/>
+      </FavoritesProvider>              
     </>
   );
 }

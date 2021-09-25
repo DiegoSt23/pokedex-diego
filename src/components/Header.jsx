@@ -12,15 +12,17 @@ const Header = () => {
 
   const handleSetPokemon = () => {
     if (value1) {
-      history.push(`/pokemon/${value1.toLowerCase()}`)
-      setMenuStatus(false)
+      history.push(`/pokemon/${value1.toLowerCase()}`);
+      setValue1("");
+      setMenuStatus(false);
     }
   };
 
   const handleSetType = () => {
     if (value2) {
-      history.push(`/type/${value2}`)
-      setMenuStatus(false)
+      history.push(`/type/${value2}`);
+      setValue2("");
+      setMenuStatus(false);
     }
   };
 
@@ -49,7 +51,6 @@ const Header = () => {
         <div>
         <select value={value2} onChange={e => {setValue2(e.target.value)}}>
           <option value="">Select a type</option>
-          <option value="all">All</option>
           <option value="normal">Normal</option>
           <option value="fighting">Fighting</option>
           <option value="flying">Flying</option>
@@ -80,7 +81,6 @@ const Header = () => {
         <div>
         <select value={value2} onChange={e => {setValue2(e.target.value)}}>
           <option value="">Select a type</option>
-          <option value="all">All</option>
           <option value="normal">Normal</option>
           <option value="fighting">Fighting</option>
           <option value="flying">Flying</option>
