@@ -196,7 +196,7 @@ const Pokemon = () => {
                 <a href={`https://www.google.com/search?q=${name}`} target="blank">
                   <h5>Google it</h5>
                 </a>
-                <NavLink to="/favorites"><h5>Go to favorites</h5></NavLink>
+                {/* <NavLink to="/favorites"><h5>Go to favorites</h5></NavLink> */}
                 <FontAwesomeIcon icon={faStar} onClick={handleAddRemoveFavorite} style={{color: starColor, cursor: "pointer"}}/>
               </div>           
             </div>
