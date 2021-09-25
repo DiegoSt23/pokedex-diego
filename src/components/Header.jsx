@@ -51,6 +51,7 @@ const Header = () => {
         <div>
         <select value={value2} onChange={e => {setValue2(e.target.value)}}>
           <option value="">Select a type</option>
+          <option value="favorites">Favorites</option>
           <option value="normal">Normal</option>
           <option value="fighting">Fighting</option>
           <option value="flying">Flying</option>
@@ -81,6 +82,7 @@ const Header = () => {
         <div>
         <select value={value2} onChange={e => {setValue2(e.target.value)}}>
           <option value="">Select a type</option>
+          <option value="favorites">Favorites</option>
           <option value="normal">Normal</option>
           <option value="fighting">Fighting</option>
           <option value="flying">Flying</option>

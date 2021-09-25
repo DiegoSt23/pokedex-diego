@@ -7,7 +7,6 @@ import Home from './Home';
 import Header from './Header';
 import Pokemon from './Pokemon';
 import PokemonsGrid from './PokemonsGrid';
-import Favorites from './Favorites';
 import Error from './Error';
 
 const Pokedex = () => { 
@@ -19,10 +18,7 @@ const Pokedex = () => {
           <Switch>
             <Route exact path="/">
               <Home/>
-            </Route> 
-            <Route exact path="/favorites">
-              <Favorites/>
-            </Route>            
+            </Route>             
             <Route exact path="/pokemon/:pokemon">
               <Pokemon/>
             </Route>

@@ -52,7 +52,7 @@ const Pokemon = () => {
       const func = async () => {
         try {
           const res = await searchPokemon(pokemonId);
-          setRequestStatus(true)
+          setRequestStatus(true);
           setPokemonId(res.data.id);
           setName(res.data.species.name);
           setTypes(res.data.types[0].type.name);
@@ -196,7 +196,6 @@ const Pokemon = () => {
                 <a href={`https://www.google.com/search?q=${name}`} target="blank">
                   <h5>Google it</h5>
                 </a>
-                {/* <NavLink to="/favorites"><h5>Go to favorites</h5></NavLink> */}
                 <FontAwesomeIcon icon={faStar} onClick={handleAddRemoveFavorite} style={{color: starColor, cursor: "pointer"}}/>
               </div>           
             </div>

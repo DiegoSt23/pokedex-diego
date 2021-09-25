@@ -4,14 +4,16 @@ import { searchType } from "../services/petitions";
 import { useParams, useHistory } from "react-router";
 import Pokemons from "./Pokemons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronRight,
-  faChevronLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faChevronLeft, faStar} from "@fortawesome/free-solid-svg-icons";
+import useFavorites from "../context/favorites/useFavorites";
 
 const PokemonsGrid = () => {
   const history = useHistory();
   const {type} = useParams();
+  const [typeStatus, setTypeStatus] = useState(false);
+  const {favorites} = useFavorites();
+  const [lengthStatus, setLengthStatus] = useState(true);
+  const [requestStatus, setRequesStatus] = useState(true)
   const [pokemonType, setPokemonType] = useState([]);
   const [sliceParam1, setSliceParram1] = useState(JSON.parse(localStorage.getItem("slice1")) || 0);
   const [sliceParam2, setSliceParram2] = useState(JSON.parse(localStorage.getItem("slice2")) || 4);
@@ -19,15 +21,33 @@ const PokemonsGrid = () => {
   const [backgroundColor, setBackgroundColor] = useState("");
   
   useEffect(() => { 
-    const func = async () => {
-      const res = await searchType(type) 
-      setPokemonType(res.data.pokemon)                    
-    }
-    func()     
+    if (type === "favorites") {
+      setTypeStatus(false);
+    } else {
+      setTypeStatus(true);
+      const func = async () => {
+        try {
+          const res = await searchType(type) ;
+          setPokemonType(res.data.pokemon);
+          setRequesStatus(true);
+        } catch(error) {
+          setRequesStatus(false)
+        }                           
+      }
+      func()
+    }         
   }, [type]);
 
+  useEffect(() => {
+    if (favorites.length === 0) {
+      setLengthStatus(false)
+    } else {
+      setLengthStatus(true)
+    }
+  }, [favorites]);
+
   const next = () => {
-    if (sliceParam1 >= 0 && sliceParam2 >= 4) {
+    if (sliceParam1 < pokemonType.length - 4 && sliceParam2 < pokemonType.length) {
       setSliceParram1(prevState => prevState + 4);
       setSliceParram2(prevState => prevState + 4);
       setPage(prevState => prevState + 1)
@@ -42,6 +62,22 @@ const PokemonsGrid = () => {
     }
   };
 
+  const favNext = () => {
+    if (sliceParam1 < favorites.length - 4 && sliceParam2 < favorites.length) {
+      setSliceParram1(prevState => prevState + 4);
+      setSliceParram2(prevState => prevState + 4);
+      setPage(prevState => prevState + 1);
+    }
+  };
+
+  const favPrev = () => {
+    if (sliceParam1 > 0 && sliceParam2 > 4) {
+      setSliceParram1(prevState => prevState - 4);
+      setSliceParram2(prevState => prevState - 4);
+      setPage(prevState => prevState - 1);
+    }
+  };
+
   useEffect(() => {
     localStorage.setItem("slice1", JSON.stringify(sliceParam1));
     localStorage.setItem("slice2", JSON.stringify(sliceParam2));
@@ -49,6 +85,12 @@ const PokemonsGrid = () => {
   }, [sliceParam1, sliceParam2, page]);
 
   useEffect(() => {
+    if (type === "favorites") {
+      setBackgroundColor("red");
+      setSliceParram1(0);
+      setSliceParram2(4);
+      setPage(1);
+    }
     if (type === "normal") {
       setBackgroundColor("rgb(172, 176, 180)")
     }
@@ -105,7 +147,9 @@ const PokemonsGrid = () => {
     }
   }, [type]);
 
-  const list = pokemonType.map((item) => <Pokemons key={item.pokemon.name} id={item.pokemon.name} />)
+  const list = pokemonType.map((item) => <Pokemons key={item.pokemon.name} id={item.pokemon.name} />);
+
+  const favoritesList = favorites.map((item, index) => <Pokemons key={index} id={item}/>);
 
   return (   
     <div className="pokemons-container">
@@ -113,13 +157,24 @@ const PokemonsGrid = () => {
       <h5 style={{color: "white"}}>{page}</h5>
       <div className="pokemons-sub-container">
         <div className="nav-buttons">
-          <FontAwesomeIcon icon={faChevronLeft} className="icon" onClick={prev}/>
+          {typeStatus
+            ? <FontAwesomeIcon icon={faChevronLeft} className="icon" onClick={prev}/>
+            : <FontAwesomeIcon icon={faChevronLeft} className="icon" onClick={favPrev}/>
+          }          
         </div>
         <div className="grid" style={{backgroundColor: backgroundColor}}>
-          {list.slice(sliceParam1, sliceParam2)}        
+          {typeStatus
+            ? list.slice(sliceParam1, sliceParam2)
+            : lengthStatus
+                ? favoritesList.slice(sliceParam1, sliceParam2)
+                : <p>So empty :C. You can add your favorite pokemons (up to 20) with the <FontAwesomeIcon icon={faStar} style={{color: "yellow"}}/> icon.</p>
+          }            
         </div>
         <div className="nav-buttons">
-          <FontAwesomeIcon icon={faChevronRight} className="icon" onClick={next}/>        
+          {typeStatus
+            ? <FontAwesomeIcon icon={faChevronRight} className="icon" onClick={next}/>
+            : <FontAwesomeIcon icon={faChevronRight} className="icon" onClick={favNext}/>
+          }        
         </div>
       </div>
       <button onClick={() => history.goBack()} className="back-button">Back</button>

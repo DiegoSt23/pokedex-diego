@@ -19,9 +19,10 @@ const Pokemons = ({id}) => {
     if (id) {     
       const func = async () => {
         const res = await searchPokemon(id)
+        console.log(res)
         setName(res.data.species.name)
         setPokemonId(res.data.id)
-        setPicture(res.data.sprites.other.dream_world.front_default) 
+        setPicture(res.data.sprites.front_default) 
       }
       func()
     }
