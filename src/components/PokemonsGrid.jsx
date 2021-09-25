@@ -151,7 +151,7 @@ const PokemonsGrid = () => {
 
   const favoritesList = favorites.map((item, index) => <Pokemons key={index} id={item}/>);
 
-  return (   
+  return ( 
     <div className="pokemons-container">
       <h2>{type.toUpperCase()}</h2>
       <h5 style={{color: "white"}}>{page}</h5>
@@ -164,7 +164,9 @@ const PokemonsGrid = () => {
         </div>
         <div className="grid" style={{backgroundColor: backgroundColor}}>
           {typeStatus
-            ? list.slice(sliceParam1, sliceParam2)
+            ? requestStatus 
+                ? list.slice(sliceParam1, sliceParam2)
+                : <p>:/ Please enter a valid type.</p>
             : lengthStatus
                 ? favoritesList.slice(sliceParam1, sliceParam2)
                 : <p>So empty :C. You can add your favorite pokemons (up to 20) with the <FontAwesomeIcon icon={faStar} style={{color: "yellow"}}/> icon.</p>
