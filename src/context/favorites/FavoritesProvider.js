@@ -2,8 +2,10 @@ import { createContext, useState, useEffect } from "react";
 
 export const FavoritesContext = createContext();
 
+const favoritesArray = [1];
+
 const FavoritesProvider = ({children}) => {
-  const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem("favorites")) || []);
+  const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem("favorites")) || favoritesArray);
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites))
