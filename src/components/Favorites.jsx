@@ -35,11 +35,13 @@ const Favorites = () => {
       setPageNumber(prevState => prevState + 1);
     }
   };
-  
+
   const list = favorites.map((item, index) => <Favorite id={item} key={index}/>)
 
   return (
-    <div className="favorites">
+    <>
+    {favorites && (
+      <div className="favorites">
       <div className="favorites-main-container">
         <div className="nav">
           {lengthStatus
@@ -67,6 +69,8 @@ const Favorites = () => {
         </div>     
       </div>
     </div>
+    )}    
+    </>
   )
 };
 
